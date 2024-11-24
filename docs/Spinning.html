@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Wędkarstwo</title>
+  <link rel="icon" href="im/sczupak.png" sizes="16x16">
+  <link rel="stylesheet" href="style.css"> 
+  <title>Page Title</title>
+</head>
+<body>
+  <div class="footer">
+    <div class="theme-switcher">
+      <label>
+        <input type="checkbox" id="theme-toggle" />
+        Tryb ciemny
+      </label>
+    </div>
+    <p style="color: #bca;"id="demo"></p>
+    <p style="color: #bca;">Twórcy: Paweł i Bartosz</p>
+    <div id="visit-count">Liczba wejść: 0</div>
+    <script>
+      // Wyświetlanie szerokości i wysokości okna
+      document.getElementById("demo").innerHTML =
+      "Szerokość okna: " + window.innerWidth + "px<br>" +
+      "Wysokość: " + window.innerHeight + "px";
+
+      // Funkcja, która zwiększa licznik wizyt
+      function updateVisitCount() {
+          let visitCount = localStorage.getItem('visitCount'); 
+          if (!visitCount) {
+              visitCount = 0;
+          }
+          visitCount++;
+          localStorage.setItem('visitCount', visitCount);
+          document.getElementById('visit-count').textContent = `Liczba wejść: ${visitCount}`;
+      }
+
+      // Wywołaj funkcję przy załadowaniu strony
+      document.addEventListener('DOMContentLoaded', updateVisitCount);
+    </script>
+  </div>
+  
+  <div class="sidenav">
+    <a href="index.html" style="color:white; font-size:26px;">Wędkarstwo</a>
+    <a href="Rzeki.html">Rzeki</a>
+    <a href="Jeziora.html">Jeziora</a>
+    <a href="Morze.html">Morze</a>
+    <a href="Splawik.html">Spławik</a>
+    <a style="border-left: 5px solid #0f4;" href="Spinning.html">Spinning</a>
+    <a href="Sieci.html">Sieci</a>
+  </div>
+
+  <div class="content">
+    <h2 class="custom-font" style="margin-top: 5px;">SPINNING – AKCJA I DYNAMIKA</h2>
+    <p style="margin-top: 25px;text-align: left;">Spinning to metoda wędkarska, która wymaga aktywnego podejścia. Wędkarz zarzuca przynętę i prowadzi ją w wodzie, symulując ruchy ofiary, co przyciąga drapieżniki. Ta technika pozwala na złowienie takich ryb jak szczupaki, okonie czy sumy. Spinning to idealne rozwiązanie dla tych, którzy lubią połączenie aktywności fizycznej i ekscytujących wyzwań. Wymaga odpowiedniego sprzętu i techniki, ale nagrodą są emocje z udanych brań i pięknych trofeów. Sprawdź się w spinningu i poczuj dynamikę tej wyjątkowej metody.</p>
+
+    <div class="card-container">
+      <!-- Pierwsza karta dla spinningu -->
+      <div class="card" onclick="expandCard(this)">
+        <img src="im/spinning1.jpg" alt="1"> 
+        <h2>Łowienie na spinning</h2>
+        <p class="short-description">Spinning to technika wędkarska polegająca na aktywnym poszukiwaniu.</p>
+        <p class="full-description">Spinning to dynamiczna metoda łowienia, polegająca na rzucaniu przynętą i jej aktywnym prowadzeniu w wodzie. Dzięki tej technice wędkarz może skutecznie łowić drapieżniki, takie jak szczupaki, okonie czy trocie. Spinning umożliwia poszukiwanie ryb w różnych miejscach wody, co czyni go jedną z najbardziej efektywnych metod połowu.</p>
+      </div>
+
+      <!-- Druga karta dla spinningu -->
+      <div class="card" onclick="expandCard(this)">
+        <img src="im/spinning2.webp" alt="2"> 
+        <h2>Przynęty do spinningu</h2>
+        <p class="short-description">Wybór odpowiedniej przynęty to klucz do sukcesu w spinningu.</p>
+        <p class="full-description">W spinningu wybór przynęty zależy od gatunku ryby, którą chcemy złowić. Wśród najpopularniejszych przynęt znajdują się woblery, gumy i obrotówki. Każda z nich ma swoje specyficzne zastosowanie i technikę prowadzenia, co pozwala na skuteczne wabienie ryb drapieżnych. Warto dobrać przynętę do warunków panujących w danym akwenie.</p>
+      </div>
+
+      <!-- Trzecia karta dla spinningu -->
+      <div class="card" onclick="expandCard(this)">
+        <img src="im/spinning3.png" alt="3"> 
+        <h2>Technika spinningowa</h2>
+        <p class="short-description">Spinning wymaga precyzyjnego i płynnego prowadzenia przynęty.</p>
+        <p class="full-description">Spinning to technika, która łączy precyzję rzutu z płynnością prowadzenia przynęty. Ważne jest, by rzut był celny, a przynęta prowadzona w taki sposób, aby imitować ruch ofiary. Umiejętność wyczuwania brania oraz szybka reakcja na sygnały z wędki to kluczowe elementy skutecznego spinningowania. Regularna praktyka pozwala na coraz lepsze opanowanie tej metody.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function expandCard(selectedCard) {
+        const allCards = document.querySelectorAll('.card');
+        
+        // Sprawdź, czy kliknięta karta jest już rozwinięta
+        const isAlreadyExpanded = selectedCard.classList.contains('expanded');
+        
+        if (isAlreadyExpanded) {
+            // Jeśli karta jest już rozwinięta, zwijamy wszystkie karty do początkowego stanu
+            allCards.forEach(card => {
+                card.classList.remove('expanded', 'collapsed'); // Usuń wszystkie klasy
+            });
+        } else {
+            // Jeśli karta nie jest rozwinięta, rozwiń ją, a pozostałe karty zwiń
+            allCards.forEach(card => {
+                if (card === selectedCard) {
+                    card.classList.toggle('expanded'); // Rozwiń wybraną kartę
+                    card.classList.remove('collapsed'); // Upewnij się, że rozwijana karta nie jest zwinięta
+                } else {
+                    card.classList.remove('expanded'); // Zwiń inne karty (jeśli były rozwinięte)
+                    card.classList.add('collapsed'); // Dodaj klasę collapsed, aby ukryć dodatkowe informacje
+                }
+            });
+        }
+    }
+  </script>
+
+  <script>
+    const toggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Sprawdzanie zapisanych preferencji
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      body.classList.add('dark-mode');
+      toggle.checked = true;
+    }
+
+    // Obsługa przełącznika trybu
+    toggle.addEventListener('change', () => {
+      if (toggle.checked) {
+        body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  </script>
+</body>
+</html>

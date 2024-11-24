@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Wędkarstwo - Sztuka Połowu</title>
+  <link rel="icon" href="im/sczupak.png" sizes="16x16">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+ 
+  <div class="sidenav">
+    <a href="index.html" style="border-left: 5px solid #0f4; font-size: 26px;">Wędkarstwo</a>
+    <a href="Rzeki.html">Rzeki</a>
+    <a href="Jeziora.html">Jeziora</a>
+    <a href="Morze.html">Morze</a>
+    <a href="Splawik.html">Spławik</a>
+    <a href="Spinning.html">Spinning</a>
+    <a href="Sieci.html">Sieci</a>
+  </div>
+  
+  <div class="content">
+    
+    <h1 class="custom-font" style="text-align: left;">WĘDKARSTWO - SZTUKA POŁOWU </h1>
+    <p style="text-align: left; margin-bottom: 30px; margin-top: 5px;" 55px;>Wędkarstwo to nie tylko hobby, ale także sposób na zbliżenie się do natury i spędzenie czasu w ciszy oraz skupieniu. Niezależnie od wybranej techniki – spławikowej, spinningowej czy sieciowej – każda z nich kryje w sobie wyjątkowe wyzwania i piękno. Ta strona pozwoli Ci odkryć różnorodność miejsc połowu, takich jak rzeki, jeziora i morza, oraz poznać podstawy różnych metod. Niezależnie od poziomu doświadczenia znajdziesz tutaj inspirację do kolejnych wypraw, a także porady dotyczące bezpieczeństwa i ochrony przyrody. Zapraszamy do wspólnego odkrywania pasji, która łączy ludzi na całym świecie.</p>
+
+    <h2 class="custom-font-2" style="margin-bottom: 15px; font-size: 40px;"><span id="hidden-button" style="position: relative; z-index: 10; cursor: pointer;">MIEJSCA</span> POŁOWU</h2>
+    <p style="text-align: left;">Rzeki, jeziora i morza oferują różnorodne doświadczenia wędkarskie. Każde miejsce kryje inne wyzwania i możliwości, dostosowane do różnych stylów i technik połowu.</p>
+
+    <div class="card-container" style="margin-top: 75px;margin-bottom: 40px;">
+      <div class="card" onclick="window.location.href='Rzeki.html'">
+        <img src="im/rzeki.jpg" alt="Rzeki">
+        <h3>Rzeki</h3>
+        <p>Dynamiczne połowy w nurcie rzek.</p>
+      </div>
+      <div class="card" onclick="window.location.href='Jeziora.html'">
+        <img src="im/jeziora.jpg" alt="Jeziora">
+        <h3>Jeziora</h3>
+        <p>Spokojne wody pełne wyzwań.</p>
+      </div>
+      <div class="card" onclick="window.location.href='Morze.html'">
+        <img src="im/morze.jpg" alt="Morze">
+        <h3>Morze</h3>
+        <p>Wielkie wyprawy na otwartą wodę.</p>
+        
+      </div>
+    </div>
+
+    <h2 class="custom-font-2" style="margin-bottom: 15px; font-size: 40px;">METODY POŁOWU</h2>
+    <p style="text-align: left;">Każda technika wędkarska – spławik, spinning czy sieci – ma swoje unikalne cechy. Dowiedz się, jak skutecznie dostosować je do różnych warunków.</p>
+
+    <div class="card-container" style="margin-top: 75px;margin-bottom: 200px;">
+      <div class="card" onclick="window.location.href='Splawik.html'">
+        <img src="im/splawik1.avif" alt="Spławik">
+        <h3>Spławik</h3>
+        <p>Tradycyjna i precyzyjna metoda połowu.</p>
+      </div>
+      <div class="card" onclick="window.location.href='Spinning.html'">
+        <img src="im/spinning.png" alt="Spinning">
+        <h3>Spinning</h3>
+        <p>Aktywna technika dla wymagających wędkarzy.</p>
+      </div>
+      <div class="card" onclick="window.location.href='Sieci.html'">
+        <img src="im/sieci.jpg" alt="Sieci">
+        <h3>Sieci</h3>
+        <p>Tradycja i skuteczność w jednym.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="theme-switcher">
+      <label>
+        <input type="checkbox" id="theme-toggle" />
+        Tryb ciemny
+      </label>
+    </div>
+    
+    <p style="color: #bca;" id="demo"></p>
+    <p style="color: #bca;">Twórcy: Paweł i Bartosz</p>
+    
+    <div id="visit-count">Liczba wejść: 0</div>
+
+    <script>
+      document.getElementById("demo").innerHTML =
+      "Szerokość okna: " + window.innerWidth + "px<br>" +
+      "Wysokość: " + window.innerHeight + "px";
+
+      function updateVisitCount() {
+          let visitCount = localStorage.getItem('visitCount'); 
+          if (!visitCount) {
+              visitCount = 0;
+          }
+          visitCount++;
+          localStorage.setItem('visitCount', visitCount);
+          document.getElementById('visit-count').textContent = `Liczba wejść: ${visitCount}`;
+      }
+      document.addEventListener('DOMContentLoaded', updateVisitCount);
+    </script>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('theme-toggle');
+    const body = document.body;
+  
+    // Sprawdzanie zapisanych preferencji
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      body.classList.add('dark-mode');
+      toggle.checked = true;
+    }
+  
+    // Obsługa przełącznika trybu
+    toggle.addEventListener('change', () => {
+      if (toggle.checked) {
+        body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  </script>
+
+<script>
+  let clickCount = 0;
+  const hiddenButton = document.getElementById('hidden-button');
+
+  hiddenButton.addEventListener('click', () => {
+    clickCount++;
+    if (clickCount >= 5) {
+      window.location.href = 'music.html';
+    }
+  });
+</script>
+  
+</body>
+</html>

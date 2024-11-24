@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Wędkarstwo</title>
+  <link rel="icon" href="im/sczupak.png" sizes="16x16">
+  <link rel="stylesheet" href="style.css"> 
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Verdana, sans-serif; margin: 0; }
+    .slideshow-container {
+      max-width: 1000px;
+      position: relative;
+      margin: auto;
+    }
+
+    .mySlides {
+      display: none;
+      text-align: center;
+    }
+
+    .mySlides img {
+      width: 100%;
+      height: auto;
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      padding: 16px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+    }
+
+    .next {
+      right: 0;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+
+    .active, .dot:hover {
+      background-color: #717171;
+    }
+
+    .music-controls {
+      display: none;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .music-controls button {
+      font-size: 18px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    .music-controls input {
+      width: 150px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidenav">
+    <a href="index.html" style="font-size: 32px;">POWRÓT</a>
+  </div>
+
+  <div class="slideshow-container">
+    <!-- Slajd 1 -->
+    <div class="mySlides">
+      <img src="im/pifpaf.jpg" alt="Zdjęcie 1" onclick="toggleControls(1)">
+      <div class="music-controls" id="controls-1">
+        <button id="play-pause-1" onclick="playPauseMusic(1)">▶️ Play</button>
+        <input type="range" min="0" max="1" step="0.1" onchange="setVolume(this.value)">
+      </div>
+      <audio id="audio-1" preload="auto">
+        <source src="pifpaf.mp3" type="audio/mp3">
+      </audio>
+    </div>
+    <!-- Slajd 2 -->
+    <div class="mySlides">
+      <img src="im/temperatura.jpg" alt="Zdjęcie 2" onclick="toggleControls(2)">
+      <div class="music-controls" id="controls-2">
+        <button id="play-pause-2" onclick="playPauseMusic(2)">▶️ Play</button>
+        <input type="range" min="0" max="1" step="0.1" onchange="setVolume(this.value)">
+      </div>
+      <audio id="audio-2" preload="auto">
+        <source src="temperatura.mp3" type="audio/mp3">
+      </audio>
+    </div>
+    <!-- Slajd 3 -->
+    <div class="mySlides">
+      <img src="im/lldm.jpg" alt="Zdjęcie 3" onclick="toggleControls(3)">
+      <div class="music-controls" id="controls-3">
+        <button id="play-pause-3" onclick="playPauseMusic(3)">▶️ Play</button>
+        <input type="range" min="0" max="1" step="0.1" onchange="setVolume(this.value)">
+      </div>
+      <audio id="audio-3" preload="auto">
+        <source src="Lloret de Mar.mp3" type="audio/mp3">
+      </audio>
+    </div>
+<div class="mySlides">
+    <img src="im/wwg.jpg" alt="Zdjęcie 4" onclick="toggleControls(4)">
+    <div class="music-controls" id="controls-4">
+      <button id="play-pause-4" onclick="playPauseMusic(4)">▶️ Play</button>
+      <input type="range" min="0" max="1" step="0.1" onchange="setVolume(this.value)">
+    </div>
+    <audio id="audio-4" preload="auto">
+      <source src="Wszyscy w Gucci.mp3" type="audio/mp3">
+    </audio>
+  </div>
+
+
+    <a class="prev" onclick="plusSlides(-1)">❮</a>
+    <a class="next" onclick="plusSlides(1)">❯</a>
+  </div>
+
+  <div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+  </div>
+
+  <script>
+    let slideIndex = 1;
+    let currentAudio = null;
+    let isPlaying = false;
+
+    // Initialize the slideshow
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) { slideIndex = 1; }
+  if (n < 1) { slideIndex = slides.length; }
+
+  // Hide all slides
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+
+  // Deactivate all dots
+  for (let i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+
+  // Show the current slide
+  slides[slideIndex - 1].style.display = "block";
+  dots[slideIndex - 1].className += " active";
+
+  // Set current audio
+  currentAudio = document.getElementById(`audio-${slideIndex}`);
+}
+    function toggleControls(slideNumber) {
+  // Hide all music controls
+  let allControls = document.querySelectorAll('.music-controls');
+  allControls.forEach(control => {
+    control.style.display = 'none';
+  });
+
+  // Show the controls for the clicked slide
+  let currentControls = document.getElementById(`controls-${slideNumber}`);
+  if (currentControls) {
+    currentControls.style.display = 'flex';
+  }
+
+  // Set the current audio to the clicked slide
+  currentAudio = document.getElementById(`audio-${slideNumber}`);
+}
+function playPauseMusic(slideNumber) {
+  let audio = document.getElementById(`audio-${slideNumber}`);
+  let button = document.getElementById(`play-pause-${slideNumber}`);
+
+  if (!isPlaying || currentAudio !== audio) {
+    if (currentAudio && currentAudio !== audio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+      let previousButton = document.querySelector(`#play-pause-${slideIndex}`);
+      previousButton.textContent = '▶️ Play';
+    }
+
+    audio.play();
+    isPlaying = true;
+    button.textContent = '⏸️ Pause';
+    currentAudio = audio;
+  } else {
+    audio.pause();
+    isPlaying = false;
+    button.textContent = '▶️ Play';
+  }
+}
+
+    function setVolume(value) {
+      if (currentAudio) {
+        currentAudio.volume = value;
+      }
+    }
+  </script>
+
+</body>
+</html>

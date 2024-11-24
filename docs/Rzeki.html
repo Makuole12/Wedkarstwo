@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Wędkarstwo</title>
+  <link rel="icon" href="im/sczupak.png" sizes="16x16">
+<link rel="stylesheet" href="style.css"> 
+<title>Page Title</title>
+</head>
+<body>
+  <div class="footer">
+    <div class="theme-switcher">
+      <label>
+        <input type="checkbox" id="theme-toggle" />
+        Tryb ciemny
+      </label>
+    </div>
+    <p style="color: #bca;"id="demo"></p>
+    <p style="color: #bca;">Twórcy: Paweł i Bartosz</p>
+    <div id="visit-count">Liczba wejść: 0</div>
+    <script>
+      // Wyświetlanie szerokości i wysokości okna
+      document.getElementById("demo").innerHTML =
+      "Szerokość okna: " + window.innerWidth + "px<br>" +
+      "Wysokość: " + window.innerHeight + "px";
+
+      // Funkcja, która zwiększa licznik wizyt
+      function updateVisitCount() {
+          let visitCount = localStorage.getItem('visitCount'); 
+          if (!visitCount) {
+              visitCount = 0;
+          }
+          visitCount++;
+          localStorage.setItem('visitCount', visitCount);
+          document.getElementById('visit-count').textContent = `Liczba wejść: ${visitCount}`;
+      }
+
+      // Wywołaj funkcję przy załadowaniu strony
+      document.addEventListener('DOMContentLoaded', updateVisitCount);
+    </script>
+  </div>
+    <div class="sidenav">
+
+        <a href="index.html" style="color:white; font-size:26px;">Wędkarstwo</a>
+        <a style="border-left: 5px solid #0f4;" href="Rzeki.html">Rzeki</a>
+        <a href="Jeziora.html">Jeziora</a>
+        <a href="Morze.html">Morze</a>
+        <a href="Splawik.html">Spławik</a>
+        <a href="Spinning.html">Spinning</a>
+        <a href="Sieci.html">Sieci</a>
+      </div>
+      <div class="content">
+        <h2 class="custom-font" style="margin-top: 5px;">RZEKI - DYNAMIKA I WYZWANIA</h2>
+        <p style="margin-top: 25px; text-align: left;">Rzeki to jedne z najbardziej ekscytujących miejsc do wędkowania. Ich zmienny nurt i różnorodność środowiska zapewniają niepowtarzalne wyzwania oraz bogactwo gatunków ryb. Wędkarze mogą liczyć na emocjonujące połowy zarówno w spokojnych, jak i rwących wodach. Wędkowanie w rzekach wymaga znajomości lokalnych warunków oraz cierpliwości, ale wynagrodzi to możliwością złowienia pstrągów, szczupaków czy leszczy. Każda rzeka to inna przygoda, a umiejętne dostosowanie techniki pozwala osiągnąć sukces niezależnie od poziomu doświadczenia. Poznaj uroki wędkowania w rzekach i odkryj ich pełen życia podwodny świat.</p>
+
+        <div class="card-container">
+            <div class="card" onclick="expandCard(this)">
+                <img src="im/rzeki1.jpg" alt="1"> 
+                <h2>Prąd rzeki</h2>
+                <p class="short-description">Prąd rzeki wpływa na techniki połowu i wybór sprzętu.</p>
+                <p class="full-description">Silny nurt wymaga cięższych zestawów, aby utrzymać przynętę w miejscu. Warto wybierać miejsca o spokojniejszym przepływie, np. zatoczki, zakola lub obszary przy przeszkodach wodnych. Rzeka zmusza do dynamicznego podejścia i regularnego zmieniania miejsc połowu.</p>
+            </div>
+            
+            <div class="card" onclick="expandCard(this)">
+                <img src="im/rzeki2.jpg" alt="2"> 
+                <h2>Sezonowe połowy</h2>
+                <p class="short-description">Pory roku i poziom wody decydują o skuteczności połowów w rzekach.</p>
+                <p class="full-description">Wiosną i jesienią ryby migrują w poszukiwaniu pokarmu, co ułatwia ich łowienie. Latem, przy niskim stanie wody, skupiają się w głębszych partiach rzeki. Zimą ryby często szukają spokojniejszych odcinków, gdzie nurt jest słabszy.</p>
+            </div>
+    
+            <div class="card" onclick="expandCard(this)">
+                <img src="im/rzeki3.png" alt="3"> 
+                <h2>Ochrona brzegów</h2>
+                <p class="short-description">Podczas łowienia w rzekach ważne jest dbanie o naturalne otoczenie.</p>
+                <p class="full-description">Nie niszcz roślinności nadbrzeżnej i unikaj zanieczyszczania rzeki. Respektuj ograniczenia dotyczące połowu chronionych gatunków i dbaj o to, aby nie naruszać siedlisk wodnych. Twoje działania mogą pomóc zachować rzekę w dobrym stanie ekologicznym.</p>
+            </div>
+        </div>
+    </div>
+    
+
+      <script>
+        function expandCard(selectedCard) {
+            const allCards = document.querySelectorAll('.card');
+            
+            // Sprawdź, czy kliknięta karta jest już rozwinięta
+            const isAlreadyExpanded = selectedCard.classList.contains('expanded');
+            
+            if (isAlreadyExpanded) {
+                // Jeśli karta jest już rozwinięta, zwijamy wszystkie karty do początkowego stanu
+                allCards.forEach(card => {
+                    card.classList.remove('expanded', 'collapsed'); // Usuń wszystkie klasy
+                });
+            } else {
+                // Jeśli karta nie jest rozwinięta, rozwiń ją, a pozostałe karty zwiń
+                allCards.forEach(card => {
+                    if (card === selectedCard) {
+                        card.classList.toggle('expanded'); // Rozwiń wybraną kartę
+                        card.classList.remove('collapsed'); // Upewnij się, że rozwijana karta nie jest zwinięta
+                    } else {
+                        card.classList.remove('expanded'); // Zwiń inne karty (jeśli były rozwinięte)
+                        card.classList.add('collapsed'); // Dodaj klasę collapsed, aby ukryć dodatkowe informacje
+                    }
+                });
+            }
+        }
+    </script>
+      <script>
+        const toggle = document.getElementById('theme-toggle');
+        const body = document.body;
+      
+        // Sprawdzanie zapisanych preferencji
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+          body.classList.add('dark-mode');
+          toggle.checked = true;
+        }
+      
+        // Obsługa przełącznika trybu
+        toggle.addEventListener('change', () => {
+          if (toggle.checked) {
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark');
+          } else {
+            body.classList.remove('dark-mode');
+            localStorage.setItem('theme', 'light');
+          }
+        });
+      </script>
+    </div>
+       
+
+        
+
+</body>
+</html>

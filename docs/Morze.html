@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Wędkarstwo</title>
+  <link rel="icon" href="im/sczupak.png" sizes="16x16">
+<link rel="stylesheet" href="style.css"> 
+<title>Page Title</title>
+</head>
+<body>
+  <div class="footer">
+    <div class="theme-switcher">
+      <label>
+        <input type="checkbox" id="theme-toggle" />
+        Tryb ciemny
+      </label>
+    </div>
+    <p style="color: #bca;"id="demo"></p>
+    <p style="color: #bca;">Twórcy: Paweł i Bartosz</p>
+    <div id="visit-count">Liczba wejść: 0</div>
+    <script>
+      // Wyświetlanie szerokości i wysokości okna
+      document.getElementById("demo").innerHTML =
+      "Szerokość okna: " + window.innerWidth + "px<br>" +
+      "Wysokość: " + window.innerHeight + "px";
+
+      // Funkcja, która zwiększa licznik wizyt
+      function updateVisitCount() {
+          let visitCount = localStorage.getItem('visitCount'); 
+          if (!visitCount) {
+              visitCount = 0;
+          }
+          visitCount++;
+          localStorage.setItem('visitCount', visitCount);
+          document.getElementById('visit-count').textContent = `Liczba wejść: ${visitCount}`;
+      }
+
+      // Wywołaj funkcję przy załadowaniu strony
+      document.addEventListener('DOMContentLoaded', updateVisitCount);
+    </script>
+  </div>
+    <div class="sidenav">
+
+        <a href="index.html" style="color:white; font-size:26px;">Wędkarstwo</a>
+        <a href="Rzeki.html">Rzeki</a>
+        <a href="Jeziora.html">Jeziora</a>
+        <a style="border-left: 5px solid #0f4;" href="Morze.html">Morze</a>
+        <a href="Splawik.html">Spławik</a>
+        <a href="Spinning.html">Spinning</a>
+        <a href="Sieci.html">Sieci</a>
+      </div>
+    <div class="content">
+      <h2 class="custom-font"style="margin-top: 5px;">MORZE – WIELKA WYPRAWA</h2>
+    <p style="margin-top: 25px;text-align: left;">Morze to synonim przygody i wyzwań dla wędkarzy. Łowienie na otwartych wodach to nie tylko sposób na złowienie dużych ryb, ale także okazja do obcowania z naturą w jej najbardziej surowej formie. Bałtyk i inne akweny oferują bogactwo gatunków, takich jak dorsze, śledzie czy flądry. Wędkowanie morskie wymaga przygotowania – odpowiedniego sprzętu, znajomości warunków oraz przestrzegania przepisów dotyczących połowu. Odkryj piękno morskiej przygody i sprawdź się w połowach na pełnym morzu.</p>
+
+      <div class="card-container">
+          <div class="card" onclick="expandCard(this)">
+              <img src="im/morze1.jpg" alt="1"> 
+              <h2>Przygotowanie</h2>
+              <p class="short-description">Łowienie na morzu wymaga odpowiedniego sprzętu i przygotowania.</p>
+              <p class="full-description">Wyprawa na morze wymaga solidnego przygotowania. Konieczne jest zaopatrzenie się w trwały sprzęt odporny na działanie słonej wody, takie jak wędki, kołowrotki czy żyłki. Ważne jest także sprawdzenie prognozy pogody, ponieważ zmienne warunki morskie mogą być niebezpieczne. Pamiętaj o odpowiednim ubiorze, kamizelce ratunkowej oraz środkach komunikacji.</p>
+          </div>
+          
+          <div class="card" onclick="expandCard(this)">
+              <img src="im/morze2.jpg" alt="2"> 
+              <h2>Bezpieczeństwo</h2>
+              <p class="short-description">Na morzu priorytetem jest bezpieczeństwo podczas połowu.</p>
+              <p class="full-description">Połowy morskie wiążą się z ryzykiem, dlatego kluczowe jest przestrzeganie zasad bezpieczeństwa. Należy zawsze informować bliskich o planowanej wyprawie, mieć przy sobie środki łączności, takie jak radio morskie, i na bieżąco monitorować warunki pogodowe. Przydatne są również kursy z zakresu pierwszej pomocy. Przemyślane działania zmniejszają ryzyko.</p>
+          </div>
+  
+          <div class="card" onclick="expandCard(this)">
+              <img src="im/morze3.jpg" alt="3"> 
+              <h2>Ochrona przyrody</h2>
+              <p class="short-description">Łowiąc na morzu, warto pamiętać o ochronie morskich ekosystemów.</p>
+              <p class="full-description">Morza i oceany to delikatne ekosystemy, które łatwo ulegają degradacji. Wędkarze powinni przestrzegać zasad połowu, takich jak respektowanie limitów i okresów ochronnych dla gatunków ryb. Nie należy wyrzucać odpadów do wody ani niszczyć siedlisk morskich. Warto również wybierać przyjazne środowisku akcesoria, takie jak biodegradowalne haczyki czy ekologiczne przynęty.</p>
+          </div>
+      </div>
+  </div>
+  
+
+    <script>
+      function expandCard(selectedCard) {
+          const allCards = document.querySelectorAll('.card');
+          
+          // Sprawdź, czy kliknięta karta jest już rozwinięta
+          const isAlreadyExpanded = selectedCard.classList.contains('expanded');
+          
+          if (isAlreadyExpanded) {
+              // Jeśli karta jest już rozwinięta, zwijamy wszystkie karty do początkowego stanu
+              allCards.forEach(card => {
+                  card.classList.remove('expanded', 'collapsed'); // Usuń wszystkie klasy
+              });
+          } else {
+              // Jeśli karta nie jest rozwinięta, rozwiń ją, a pozostałe karty zwiń
+              allCards.forEach(card => {
+                  if (card === selectedCard) {
+                      card.classList.toggle('expanded'); // Rozwiń wybraną kartę
+                      card.classList.remove('collapsed'); // Upewnij się, że rozwijana karta nie jest zwinięta
+                  } else {
+                      card.classList.remove('expanded'); // Zwiń inne karty (jeśli były rozwinięte)
+                      card.classList.add('collapsed'); // Dodaj klasę collapsed, aby ukryć dodatkowe informacje
+                  }
+              });
+          }
+      }
+  </script>
+    <script>
+        const toggle = document.getElementById('theme-toggle');
+        const body = document.body;
+      
+        // Sprawdzanie zapisanych preferencji
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+          body.classList.add('dark-mode');
+          toggle.checked = true;
+        }
+      
+        // Obsługa przełącznika trybu
+        toggle.addEventListener('change', () => {
+          if (toggle.checked) {
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark');
+          } else {
+            body.classList.remove('dark-mode');
+            localStorage.setItem('theme', 'light');
+          }
+        });
+      </script>
+    
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Wędkarstwo</title>
+  <link rel="icon" href="im/sczupak.png" sizes="16x16">
+<link rel="stylesheet" href="style.css"> 
+<title>Page Title</title>
+</head>
+<body>
+  <div class="footer">
+    <div class="theme-switcher">
+      <label>
+        <input type="checkbox" id="theme-toggle" />
+        Tryb ciemny
+      </label>
+    </div>
+    <p style="color: #bca;"id="demo"></p>
+    <p style="color: #bca;">Twórcy: Paweł i Bartosz</p>
+    <div id="visit-count">Liczba wejść: 0</div>
+    <script>
+      // Wyświetlanie szerokości i wysokości okna
+      document.getElementById("demo").innerHTML =
+      "Szerokość okna: " + window.innerWidth + "px<br>" +
+      "Wysokość: " + window.innerHeight + "px";
+
+      // Funkcja, która zwiększa licznik wizyt
+      function updateVisitCount() {
+          let visitCount = localStorage.getItem('visitCount'); 
+          if (!visitCount) {
+              visitCount = 0;
+          }
+          visitCount++;
+          localStorage.setItem('visitCount', visitCount);
+          document.getElementById('visit-count').textContent = `Liczba wejść: ${visitCount}`;
+      }
+
+      // Wywołaj funkcję przy załadowaniu strony
+      document.addEventListener('DOMContentLoaded', updateVisitCount);
+    </script>
+  </div>
+    <div class="sidenav">
+
+        <a href="index.html" style="color:white; font-size:26px;">Wędkarstwo</a>
+        <a href="Rzeki.html">Rzeki</a>
+        <a href="Jeziora.html">Jeziora</a>
+        <a href="Morze.html">Morze</a>
+        <a href="Splawik.html">Spławik</a>
+        <a href="Spinning.html">Spinning</a>
+        <a style="border-left: 5px solid #0f4;" href="Sieci.html">Sieci</a>
+      </div>
+
+      <div class="content">
+        <h2 class="custom-font" style="margin-top: 5px;">SIECI - TRADYCJA I WYDAJNOŚĆ</h2>
+        <p style="margin-top: 10px; text-align: left;">Łowienie na sieci to jedna z najstarszych metod połowu, łącząca tradycję z efektywnością. Stosowana głównie przez rybaków, ale także przez wędkarzy w celach rekreacyjnych, wymaga odpowiednich zezwoleń i przestrzegania przepisów prawnych. Sieci pozwalają na masowy połów ryb, takich jak śledzie, dorsze czy płocie. Metoda ta jest szczególnie popularna w akwenach morskich i większych jeziorach. Dowiedz się więcej o technikach sieciowych i ich roli w wędkarstwie współczesnym.</p>
+        <div class="card-container">
+            <div class="card" onclick="expandCard(this)">
+                <img src="im/net1.webp" alt="1"> 
+                <h2>Podstawy sieci</h2>
+                <p class="short-description">Łowienie na sieci to metoda tradycyjna, wymagająca odpowiednich umiejętności.</p>
+                <p class="full-description">Łowienie na sieci to jedna z najstarszych technik połowu ryb, używana zarówno w wodach słodkich, jak i słonych. Sieci, odpowiednio rozmieszczone, pozwalają na masowy połów, szczególnie skuteczny w przypadku ławic ryb. Niezbędne jest umiejętne zarzucanie i wyciąganie sieci, a także wybór odpowiedniego miejsca i głębokości połowu. To metoda wymagająca cierpliwości i doświadczenia.</p>
+            </div>
+            
+            <div class="card" onclick="expandCard(this)">
+                <img src="im/net2.webp" alt="2"> 
+                <h2>Rodzaje sieci</h2>
+                <p class="short-description">Sieci różnią się budową i zastosowaniem w różnych warunkach wodnych.</p>
+                <p class="full-description">Istnieje wiele rodzajów sieci, takich jak drygawice, niewody czy sieci stawne. Każdy typ ma inne zastosowanie – drygawice są używane w płytkich wodach, niewody pozwalają na połowy w głębokich akwenach, a sieci stawne sprawdzają się w jeziorach i stawach hodowlanych. Wybór odpowiedniej sieci zależy od gatunku ryb, wielkości łowiska oraz warunków atmosferycznych.</p>
+            </div>
+    
+            <div class="card" onclick="expandCard(this)">
+                <img src="im/net3.webp" alt="3"> 
+                <h2>Legalność połowu</h2>
+                <p class="short-description">Korzystanie z sieci wędkarskich wymaga przestrzegania lokalnych przepisów.</p>
+                <p class="full-description">Łowienie ryb na sieci jest ściśle regulowane prawem, aby chronić środowisko naturalne i zapobiegać nadmiernej eksploatacji. W wielu krajach konieczne jest posiadanie specjalnych zezwoleń oraz zgoda na używanie sieci w określonych akwenach. Użycie sieci bez odpowiednich pozwoleń może prowadzić do wysokich kar, konfiskaty sprzętu, a nawet postępowania sądowego.</p>
+            </div>
+        </div>
+    </div>
+      <script>
+        function expandCard(selectedCard) {
+            const allCards = document.querySelectorAll('.card');
+            
+            // Sprawdź, czy kliknięta karta jest już rozwinięta
+            const isAlreadyExpanded = selectedCard.classList.contains('expanded');
+            
+            if (isAlreadyExpanded) {
+                // Jeśli karta jest już rozwinięta, zwijamy wszystkie karty do początkowego stanu
+                allCards.forEach(card => {
+                    card.classList.remove('expanded', 'collapsed'); // Usuń wszystkie klasy
+                });
+            } else {
+                // Jeśli karta nie jest rozwinięta, rozwiń ją, a pozostałe karty zwiń
+                allCards.forEach(card => {
+                    if (card === selectedCard) {
+                        card.classList.toggle('expanded'); // Rozwiń wybraną kartę
+                        card.classList.remove('collapsed'); // Upewnij się, że rozwijana karta nie jest zwinięta
+                    } else {
+                        card.classList.remove('expanded'); // Zwiń inne karty (jeśli były rozwinięte)
+                        card.classList.add('collapsed'); // Dodaj klasę collapsed, aby ukryć dodatkowe informacje
+                    }
+                });
+            }
+        }
+    </script>
+
+      <script>
+        const toggle = document.getElementById('theme-toggle');
+        const body = document.body;
+      
+        // Sprawdzanie zapisanych preferencji
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+          body.classList.add('dark-mode');
+          toggle.checked = true;
+        }
+      
+        // Obsługa przełącznika trybu
+        toggle.addEventListener('change', () => {
+          if (toggle.checked) {
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark');
+          } else {
+            body.classList.remove('dark-mode');
+            localStorage.setItem('theme', 'light');
+          }
+        });
+      </script>
+</body>
+</html>

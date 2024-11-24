@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Wędkarstwo</title>
+  <link rel="icon" href="im/sczupak.png" sizes="16x16">
+  <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+  <div class="footer">
+    <div class="theme-switcher">
+      <label>
+        <input type="checkbox" id="theme-toggle" />
+        Tryb ciemny
+      </label>
+    </div>
+    <p style="color: #bca;" id="demo"></p>
+    <p style="color: #bca;">Twórcy: Paweł i Bartosz</p>
+    <div style="text-align: center"id=visit-count>Liczba wejść: 0</div>
+    <script>
+      document.getElementById("demo").innerHTML =
+        "Szerokość okna: " + window.innerWidth + "px<br>" +
+        "Wysokość: " + window.innerHeight + "px";
+
+      function updateVisitCount() {
+          let visitCount = localStorage.getItem('visitCount'); 
+          if (!visitCount) {
+              visitCount = 0;
+          }
+          visitCount++;
+          localStorage.setItem('visitCount', visitCount);
+          document.getElementById('visit-count').textContent = `Liczba wejść: ${visitCount}`;
+      }
+      document.addEventListener('DOMContentLoaded', updateVisitCount);
+    </script>
+  </div>
+
+  <div class="sidenav">
+    <a href="index.html" style="color:white; font-size:26px;">Wędkarstwo</a>
+    <a href="Rzeki.html">Rzeki</a>
+    <a href="Jeziora.html">Jeziora</a>
+    <a href="Morze.html">Morze</a>
+    <a style="border-left: 5px solid #0f4;" href="Splawik.html">Spławik</a>
+    <a href="Spinning.html">Spinning</a>
+    <a href="Sieci.html">Sieci</a>
+  </div>
+
+  <div class="content">
+    <h2 class="custom-font" style="margin-top: 5px;">SPŁAWIK – TRADYCJA I PROSTOTA</h2>
+    <p style="margin-top: 25px;text-align: left;"s>Spławik to jedna z najbardziej popularnych i uniwersalnych metod wędkarskich. Prosta w obsłudze, a jednocześnie skuteczna, pozwala na złowienie różnych gatunków ryb. Metoda spławikowa jest idealna dla początkujących, oferując możliwość nauki obserwacji i reakcji na branie. Spławik unosi się na powierzchni wody, sygnalizując każdy ruch ryby. Wybierz odpowiedni zestaw i odkryj radość z połowów spławikowych w jeziorach, rzekach czy nawet na stawach hodowlanych.</p>
+
+    <div class="card-container">
+      <div class="card" onclick="expandCard(this)">
+          <img src="im/splawik1.avif" alt="1"> 
+          <h2>Podstawy łowienia</h2>
+          <p class="short-description">Łowienie na spławik to skuteczna i łatwa technika wędkarska, idealna dla początkujących.</p>
+          <p class="full-description">Spławikowa metoda wędkarstwa to jeden z najstarszych sposobów połowu, doskonały dla początkujących. Spławik unosi się na powierzchni wody, sygnalizując branie. Technika ta pozwala na łowienie różnych gatunków ryb, w tym karpi, leszczy, pstrągów czy okoni, zarówno w jeziorach, jak i rzekach.</p>
+      </div>
+      
+      <div class="card" onclick="expandCard(this)">
+          <img src="im/splawik2.jpg" alt="2"> 
+          <h2>Zestaw na spławik</h2>
+          <p class="short-description">Łowienie na spławik to skuteczna i łatwa technika wędkarska, idealna dla początkujących.</p>
+          <p class="full-description">Spławikowa metoda wędkarstwa to jeden z najstarszych sposobów połowu, doskonały dla początkujących. Spławik unosi się na powierzchni wody, sygnalizując branie. Technika ta pozwala na łowienie różnych gatunków ryb, w tym karpi, leszczy, pstrągów czy okoni, zarówno w jeziorach, jak i rzekach.</p>
+      </div>
+
+      <div class="card" onclick="expandCard(this)">
+          <img src="im/splawik3.jpg" alt="3"> 
+          <h2>Branie na spławik</h2>
+          <p class="short-description">Branie na spławik rozpoznamy po subtelnym ruchu spławika na wodzie.</p>
+          <p class="full-description">Rozpoznawanie brań to sztuka, która wymaga wprawy. Podczas brania spławik zaczyna się unosić, opadać lub zbaczać na bok. Każdy ruch może wskazywać na obecność ryby. Ważne jest, aby wędkarz szybko zareagował i wyciągnął wędkę, co zwiększa szansę na udany połów. Regularna obserwacja spławika jest kluczem do sukcesu.
+
+          </p>
+      </div>
+  </div>
+  </div>
+
+  <script>
+    function expandCard(selectedCard) {
+        const allCards = document.querySelectorAll('.card');
+        
+        // Sprawdź, czy kliknięta karta jest już rozwinięta
+        const isAlreadyExpanded = selectedCard.classList.contains('expanded');
+        
+        if (isAlreadyExpanded) {
+            // Jeśli karta jest już rozwinięta, zwijamy wszystkie karty do początkowego stanu
+            allCards.forEach(card => {
+                card.classList.remove('expanded', 'collapsed'); // Usuń wszystkie klasy
+            });
+        } else {
+            // Jeśli karta nie jest rozwinięta, rozwiń ją, a pozostałe karty zwiń
+            allCards.forEach(card => {
+                if (card === selectedCard) {
+                    card.classList.toggle('expanded'); // Rozwiń wybraną kartę
+                    card.classList.remove('collapsed'); // Upewnij się, że rozwijana karta nie jest zwinięta
+                } else {
+                    card.classList.remove('expanded'); // Zwiń inne karty (jeśli były rozwinięte)
+                    card.classList.add('collapsed'); // Dodaj klasę collapsed, aby ukryć dodatkowe informacje
+                }
+            });
+        }
+    }
+</script>
+
+<script>
+  const toggle = document.getElementById('theme-toggle');
+  const body = document.body;
+
+  // Sprawdzanie zapisanych preferencji
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    body.classList.add('dark-mode');
+    toggle.checked = true;
+  }
+
+  // Obsługa przełącznika trybu
+  toggle.addEventListener('change', () => {
+    if (toggle.checked) {
+      body.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      body.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'light');
+    }
+  });
+</script>
+</div>
+</body>
+</html>
